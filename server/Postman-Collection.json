@@ -1,0 +1,133 @@
+{
+  "info": {
+    "name": "Unstuck Backend - Express API",
+    "description": "Testing collection for Unstuck Voice-Guided Cursor API Endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8787/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8787"
+        },
+        "description": "Check if backend is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Health Endpoint",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8787/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8787"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ASR - Speech to Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"audio_data\": \"data:audio/webm;base64,GkXfo59BE7N8gJBLqoKBQIqBTUDg2ZNZW5jb2RlZCBhdWRpbyBzdHJlYW0gaW4gd2VibyBmb3JtYXQ=\",\n  \"language\": \"en\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8787/asr",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8787",
+          "path": ["asr"]
+        },
+        "description": "Convert speech (audio) to text using OpenAI Whisper"
+      },
+      "response": []
+    },
+    {
+      "name": "ANALYZE - AI Query Analysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userQuery\": \"Find flights to New York for next week\",\n  \"screenshot\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA\",\n  \"domString\": \"<html><body><div class='search-box'><input type='text' id='search' placeholder='Search flights'/><button class='search-btn'>Search</button></div></body></html>\",\n  \"previousMessages\": [],\n  \"sitemap\": \"Home > Flights > Search > Results\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8787/analyze",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8787",
+          "path": ["analyze"]
+        },
+        "description": "Analyze a query using Gemini AI to determine page actions"
+      },
+      "response": []
+    },
+    {
+      "name": "TTS - Text to Speech",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"Hello! I found flights to New York for next week. Let me show you the best options.\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8787/tts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8787",
+          "path": ["tts"]
+        },
+        "description": "Convert text to speech using Google Cloud TTS API. Returns MP3 audio file."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8787"
+    },
+    {
+      "key": "api_key",
+      "value": ""
+    }
+  ]
+}

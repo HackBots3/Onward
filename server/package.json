@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "scripts": {
+    "dev": "node src/server.js",
+    "deploy": "wrangler deploy --minify"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "openai": "^6.39.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "wrangler": "^3.101.0"
+  }
+}
